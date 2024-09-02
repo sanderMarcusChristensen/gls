@@ -1,0 +1,123 @@
+package dat;
+
+import dat.entities.Package;
+import dat.enums.DeliveryStatus;
+import dat.enums.HibernateConfigState;
+import dat.exceptions.JpaException;
+import dat.persistence.PackageDAO;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class PackageDAOTest {
+
+    private static PackageDAO packageDAO;
+    private static Package p1, p2, p3;
+
+    @BeforeAll
+    static void setUpAll() {
+      packageDAO = packageDAO.getInstance(HibernateConfigState.TEST);
+    }
+
+    @BeforeEach
+    void setUp() {
+        EntityManagerFactory emf = packageDAO.getEmf();
+
+        // Reset table and sequence before each test
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            em.createQuery("DELETE FROM Package").executeUpdate();
+            em.createNativeQuery("ALTER SEQUENCE package_id_seq RESTART WITH 1").executeUpdate();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            throw new JpaException("Error deleting packages: " + e.getMessage());
+        }
+
+        // Create test data
+        p1 = Package.builder()
+                .trackingNumber("123456789")
+                .sender("John Snow")
+                .receiver("Daenerys Targaryen")
+                .deliveryStatus(DeliveryStatus.PENDING)
+                .build();
+        p2 = Package.builder()
+                .trackingNumber("987654321")
+                .sender("Ayria Stark")
+                .receiver("The Mountain")
+                .deliveryStatus(DeliveryStatus.DELIVERED)
+                .build();
+        p3 = Package.builder()
+                .trackingNumber("123456789")
+                .sender("Cersei Lannister")
+                .receiver("Tyrion Lannister")
+                .deliveryStatus(DeliveryStatus.PENDING)
+                .build();
+        packageDAO.create(p1);
+        packageDAO.create(p2);
+        packageDAO.create(p3);
+    }
+
+    @AfterAll
+    static void tearDown() {
+        packageDAO.close();
+    }
+
+    @Test
+    @DisplayName("Lets check if the database is connected")
+    void getInstance() {
+        assertNotNull(packageDAO);
+    }
+
+    @Test
+    @DisplayName("Lets create a new instance of a package")
+    void create() {
+        Package p4 = Package.builder()
+                            .trackingNumber("121231234")
+                            .sender("Robb Stark")
+                            .receiver("Sansa Stark")
+                            .deliveryStatus(DeliveryStatus.PENDING)
+                            .build();
+        packageDAO.create(p4);
+        assertEquals(4, p4.getId());
+    }
+
+    @Test
+    @DisplayName("Lets find a package by id")
+    void findById() {
+        Package actual = packageDAO.findById(p1.getId());
+        assertEquals(p1, actual);
+    }
+
+    @Test
+    @DisplayName("Lets find a package by tracking number")
+    void findByTrackingNumber() {
+        Package actual = packageDAO.findByTrackingNumber(p1.getTrackingNumber());
+        assertEquals(p1, actual);
+    }
+
+    @Test
+    @DisplayName("Lets update a package. We update the delivery status")
+    void update() {
+        Package updated = Package.builder()
+                .Id(p1.getId())
+                .trackingNumber(p1.getTrackingNumber())
+                .sender(p1.getSender())
+                .receiver(p1.getReceiver())
+                .deliveryStatus(DeliveryStatus.DELIVERED)
+                .build();
+        Package actual = packageDAO.update(updated);
+        // This needs an equals method in the Package class to work
+        assertEquals(updated, actual);
+    }
+
+    @Test
+    void delete() {
+        boolean actual = packageDAO.delete(p1);
+        assertTrue(actual);
+        Package deleted = packageDAO.findById(p1.getId());
+        assertNull(deleted);
+    }
+}
