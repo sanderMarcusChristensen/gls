@@ -15,24 +15,10 @@ import java.util.Properties;
 public class HibernateConfig {
 
     private static EntityManagerFactory entityManagerFactory;
+    private static String dbName = "";
 
-    private static void getAnnotationConfiguration(Configuration configuration) {
-        // add annotated classes --- remember to add new entities here
-        configuration.addAnnotatedClass(Package.class);
-    }
-
-    private static EntityManagerFactory getEntityManagerFactory(Configuration configuration, Properties props) {
-        configuration.setProperties(props);
-        getAnnotationConfiguration(configuration);
-
-        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-        System.out.println("Hibernate Java Config serviceRegistry created");
-
-        SessionFactory sf = configuration.buildSessionFactory(serviceRegistry);
-        return sf.unwrap(EntityManagerFactory.class);
-    }
-
-    public static EntityManagerFactory getEntityManagerFactoryConfig(HibernateConfigState state) {
+    public static EntityManagerFactory getEntityManagerFactoryConfig(HibernateConfigState state, String db) {
+        dbName = db;
         if (entityManagerFactory == null) {
             if (state == HibernateConfigState.TEST) {
                 entityManagerFactory = setupHibernateConfigTest();
@@ -43,13 +29,17 @@ public class HibernateConfig {
         return entityManagerFactory;
     }
 
+    private static void getAnnotationConfiguration(Configuration configuration) {
+        // add annotated classes --- remember to add new entities here
+        configuration.addAnnotatedClass(Package.class);
+    }
+
     private static EntityManagerFactory buildEntityFactoryConfig() {
         try {
             Configuration configuration = new Configuration();
-
             Properties props = new Properties();
-
-            props.put("hibernate.connection.url", "jdbc:postgresql://localhost:5432/gls?currentSchema=public");
+            String connctionURL = String.format("jdbc:postgresql://localhost:5432/%s?currentSchema=public", dbName);
+            props.put("hibernate.connection.url", connctionURL);
             props.put("hibernate.connection.username", "postgres");
             props.put("hibernate.connection.password", "postgres");
             // props.put("hibernate.show_sql", "true"); // show sql in console
@@ -75,7 +65,7 @@ public class HibernateConfig {
             Properties props = new Properties();
             props.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
             props.put("hibernate.connection.driver_class", "org.testcontainers.jdbc.ContainerDatabaseDriver");
-            props.put("hibernate.connection.url", "jdbc:tc:postgresql:15.3-alpine3.18:///test-db");
+            props.put("hibernate.connection.url", "jdbc:tc:postgresql:16.2-alpine3.18:///test-db");
             props.put("hibernate.connection.username", "postgres");
             props.put("hibernate.connection.password", "postgres");
             props.put("hibernate.archive.autodetection", "class");
@@ -87,5 +77,16 @@ public class HibernateConfig {
             System.err.println("Initial SessionFactory creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
         }
+    }
+
+    private static EntityManagerFactory getEntityManagerFactory(Configuration configuration, Properties props) {
+        configuration.setProperties(props);
+        getAnnotationConfiguration(configuration);
+
+        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+        System.out.println("Hibernate Java Config serviceRegistry created");
+
+        SessionFactory sf = configuration.buildSessionFactory(serviceRegistry);
+        return sf.unwrap(EntityManagerFactory.class);
     }
 }

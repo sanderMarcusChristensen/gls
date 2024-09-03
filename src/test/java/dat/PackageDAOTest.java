@@ -14,12 +14,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class PackageDAOTest {
 
-    private static PackageDAO packageDAO;
+    private static final PackageDAO packageDAO = PackageDAO.getInstance(HibernateConfigState.TEST);
     private static Package p1, p2, p3;
 
     @BeforeAll
-    static void setUpAll() {
-      packageDAO = packageDAO.getInstance(HibernateConfigState.TEST);
+    void setUpAll() {
     }
 
     @BeforeEach
@@ -50,7 +49,7 @@ class PackageDAOTest {
                 .deliveryStatus(DeliveryStatus.DELIVERED)
                 .build();
         p3 = Package.builder()
-                .trackingNumber("123456789")
+                .trackingNumber("123456987")
                 .sender("Cersei Lannister")
                 .receiver("Tyrion Lannister")
                 .deliveryStatus(DeliveryStatus.PENDING)
@@ -66,13 +65,11 @@ class PackageDAOTest {
     }
 
     @Test
-    @DisplayName("Lets check if the database is connected")
     void getInstance() {
         assertNotNull(packageDAO);
     }
 
     @Test
-    @DisplayName("Lets create a new instance of a package")
     void create() {
         Package p4 = Package.builder()
                             .trackingNumber("121231234")
@@ -85,29 +82,29 @@ class PackageDAOTest {
     }
 
     @Test
-    @DisplayName("Lets find a package by id")
     void findById() {
         Package actual = packageDAO.findById(p1.getId());
         assertEquals(p1, actual);
     }
 
     @Test
-    @DisplayName("Lets find a package by tracking number")
     void findByTrackingNumber() {
         Package actual = packageDAO.findByTrackingNumber(p1.getTrackingNumber());
         assertEquals(p1, actual);
     }
 
     @Test
-    @DisplayName("Lets update a package. We update the delivery status")
     void update() {
         Package updated = Package.builder()
-                .Id(p1.getId())
+                .id(p1.getId())
                 .trackingNumber(p1.getTrackingNumber())
                 .sender(p1.getSender())
                 .receiver(p1.getReceiver())
+                .createdDateTime(p1.getCreatedDateTime())
+                .updatedDateTime(p1.getUpdatedDateTime())
                 .deliveryStatus(DeliveryStatus.DELIVERED)
                 .build();
+        assertNotEquals(p1.getDeliveryStatus(), updated.getDeliveryStatus());
         Package actual = packageDAO.update(updated);
         // This needs an equals method in the Package class to work
         assertEquals(updated, actual);
@@ -117,6 +114,8 @@ class PackageDAOTest {
     void delete() {
         boolean actual = packageDAO.delete(p1);
         assertTrue(actual);
+        actual = packageDAO.delete(p1);
+        assertFalse(actual);
         Package deleted = packageDAO.findById(p1.getId());
         assertNull(deleted);
     }

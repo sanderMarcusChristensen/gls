@@ -15,7 +15,7 @@ public class PackageDAO implements iDAO<Package> {
 
     public static PackageDAO getInstance(HibernateConfigState state){
         if(instance == null){
-            emf = HibernateConfig.getEntityManagerFactoryConfig(state);
+            emf = HibernateConfig.getEntityManagerFactoryConfig(state, "gls");
             instance = new PackageDAO();
         }
         return instance;
@@ -56,7 +56,7 @@ public class PackageDAO implements iDAO<Package> {
     public Package findByTrackingNumber(String trackingNumber) {
        // use a typedquery
         try (EntityManager em = emf.createEntityManager()){
-            TypedQuery<Package> query = em.createQuery("SELECT  p FROM Package p WHERE p.trackingNumber = :trackingNumber", Package.class);
+            TypedQuery<Package> query = em.createQuery("SELECT p FROM Package p WHERE p.trackingNumber = :trackingNumber", Package.class);
             query.setParameter("trackingNumber", trackingNumber);
             query.setMaxResults(1);
             return query.getSingleResult();
@@ -67,14 +67,15 @@ public class PackageDAO implements iDAO<Package> {
 
     @Override
     public Package update(Package aPackage) {
+        Package updatedPackage = null;
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            em.merge(aPackage);
+            updatedPackage = em.merge(aPackage);
             em.getTransaction().commit();
         } catch (Exception e) {
             throw new JpaException("Error updating package: " + e.getMessage());
         }
-        return aPackage;
+        return updatedPackage;
     }
 
     @Override
