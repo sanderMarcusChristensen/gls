@@ -2244,3 +2244,112 @@ Caused by: org.postgresql.util.PSQLException: ERROR: relation "idx_tracking_numb
 2024-09-03 18:46:30 [main] INFO  o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@33ebe4f0] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 2024-09-03 18:46:31 [main] INFO  o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@5751e53e] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 2024-09-03 18:46:31 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:tc:postgresql:16.2-alpine3.18:///test-db]
+2024-09-03 22:53:10 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.4.Final
+2024-09-03 22:53:10 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2024-09-03 22:53:10 [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2024-09-03 22:53:10 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.testcontainers.jdbc.ContainerDatabaseDriver
+2024-09-03 22:53:10 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:tc:postgresql:16.2-alpine3.18:///test-db]
+2024-09-03 22:53:10 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2024-09-03 22:53:10 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2024-09-03 22:53:10 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2024-09-03 22:53:10 [main] INFO  o.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2024-09-03 22:53:10 [main] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2024-09-03 22:53:10 [main] INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.1
+2024-09-03 22:53:10 [main] INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2024-09-03 22:53:10 [main] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with Docker accessed via Unix socket (/Users/jobe/.docker/run/docker.sock)
+2024-09-03 22:53:10 [main] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2024-09-03 22:53:10 [main] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 25.0.3
+  API Version: 1.44
+  Operating System: Docker Desktop
+  Total Memory: 1913 MB
+2024-09-03 22:53:10 [main] INFO  tc.testcontainers/ryuk:0.8.1 - Creating container for image: testcontainers/ryuk:0.8.1
+2024-09-03 22:53:11 [main] INFO  tc.testcontainers/ryuk:0.8.1 - Container testcontainers/ryuk:0.8.1 is starting: 2d493d9fcf8f5d9d4eec22327ee15dd8c1c45422e0cbc39399efb6388128af65
+2024-09-03 22:53:11 [main] INFO  tc.testcontainers/ryuk:0.8.1 - Container testcontainers/ryuk:0.8.1 started in PT0.47106S
+2024-09-03 22:53:11 [main] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2024-09-03 22:53:11 [main] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2024-09-03 22:53:11 [main] INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2024-09-03 22:53:11 [main] INFO  tc.postgres:16.2-alpine3.18 - Creating container for image: postgres:16.2-alpine3.18
+2024-09-03 22:53:11 [main] INFO  tc.postgres:16.2-alpine3.18 - Container postgres:16.2-alpine3.18 is starting: 56884ac78044cea7955623968466771f4400c2c8f1b079c106b949b08d4bbf7d
+2024-09-03 22:53:12 [main] INFO  tc.postgres:16.2-alpine3.18 - Container postgres:16.2-alpine3.18 started in PT0.856929S
+2024-09-03 22:53:12 [main] INFO  tc.postgres:16.2-alpine3.18 - Container is started (JDBC URL: jdbc:postgresql://localhost:53711/test?loggerLevel=OFF)
+2024-09-03 22:53:12 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
+2024-09-03 22:53:12 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-09-03 22:53:12 [main] INFO  o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@23f5008a] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-09-03 22:53:12 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2024-09-03 22:53:12 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - table "package" does not exist, skipping
+2024-09-03 22:53:12 [main] INFO  o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@5c573229] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-09-03 22:54:56 [main] INFO  o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4af606e9] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-09-03 22:54:56 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:tc:postgresql:16.2-alpine3.18:///test-db]
+2024-09-03 22:59:24 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.4.Final
+2024-09-03 22:59:24 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2024-09-03 22:59:24 [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2024-09-03 22:59:24 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.testcontainers.jdbc.ContainerDatabaseDriver
+2024-09-03 22:59:24 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:tc:postgresql:16.2-alpine3.18:///test-db]
+2024-09-03 22:59:24 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2024-09-03 22:59:24 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2024-09-03 22:59:24 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2024-09-03 22:59:24 [main] INFO  o.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2024-09-03 22:59:24 [main] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2024-09-03 22:59:24 [main] INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.1
+2024-09-03 22:59:24 [main] INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2024-09-03 22:59:24 [main] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with Docker accessed via Unix socket (/Users/jobe/.docker/run/docker.sock)
+2024-09-03 22:59:24 [main] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2024-09-03 22:59:24 [main] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 25.0.3
+  API Version: 1.44
+  Operating System: Docker Desktop
+  Total Memory: 1913 MB
+2024-09-03 22:59:24 [main] INFO  tc.testcontainers/ryuk:0.8.1 - Creating container for image: testcontainers/ryuk:0.8.1
+2024-09-03 22:59:24 [main] INFO  tc.testcontainers/ryuk:0.8.1 - Container testcontainers/ryuk:0.8.1 is starting: 0d8ab562d30f8b91279b092de039c535aa720fb9c154f9e050e92bc5d13e8e3e
+2024-09-03 22:59:25 [main] INFO  tc.testcontainers/ryuk:0.8.1 - Container testcontainers/ryuk:0.8.1 started in PT0.294099S
+2024-09-03 22:59:25 [main] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2024-09-03 22:59:25 [main] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2024-09-03 22:59:25 [main] INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2024-09-03 22:59:25 [main] INFO  tc.postgres:16.2-alpine3.18 - Creating container for image: postgres:16.2-alpine3.18
+2024-09-03 22:59:25 [main] INFO  tc.postgres:16.2-alpine3.18 - Container postgres:16.2-alpine3.18 is starting: ea4f2c18d44ca9272d7764fb917334f6b1c087ad7d908e23d60b6e6bd955be02
+2024-09-03 22:59:25 [main] INFO  tc.postgres:16.2-alpine3.18 - Container postgres:16.2-alpine3.18 started in PT0.817435S
+2024-09-03 22:59:25 [main] INFO  tc.postgres:16.2-alpine3.18 - Container is started (JDBC URL: jdbc:postgresql://localhost:53811/test?loggerLevel=OFF)
+2024-09-03 22:59:26 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
+2024-09-03 22:59:26 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-09-03 22:59:26 [main] INFO  o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@655621fd] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-09-03 22:59:26 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2024-09-03 22:59:26 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - table "package" does not exist, skipping
+2024-09-03 22:59:26 [main] INFO  o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@696174d3] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-09-03 22:59:49 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.4.Final
+2024-09-03 22:59:49 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2024-09-03 22:59:49 [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2024-09-03 22:59:49 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.testcontainers.jdbc.ContainerDatabaseDriver
+2024-09-03 22:59:49 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:tc:postgresql:16.2-alpine3.18:///test-db]
+2024-09-03 22:59:49 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=postgres}
+2024-09-03 22:59:49 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2024-09-03 22:59:49 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2024-09-03 22:59:49 [main] INFO  o.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2024-09-03 22:59:49 [main] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2024-09-03 22:59:49 [main] INFO  o.testcontainers.DockerClientFactory - Testcontainers version: 1.20.1
+2024-09-03 22:59:49 [main] INFO  o.t.d.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2024-09-03 22:59:49 [main] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with Docker accessed via Unix socket (/Users/jobe/.docker/run/docker.sock)
+2024-09-03 22:59:49 [main] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2024-09-03 22:59:49 [main] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 25.0.3
+  API Version: 1.44
+  Operating System: Docker Desktop
+  Total Memory: 1913 MB
+2024-09-03 22:59:49 [main] INFO  tc.testcontainers/ryuk:0.8.1 - Creating container for image: testcontainers/ryuk:0.8.1
+2024-09-03 22:59:49 [main] INFO  tc.testcontainers/ryuk:0.8.1 - Container testcontainers/ryuk:0.8.1 is starting: cc3b558c16617be1fa24dc1217e55f6df59d71b60c6be6dcc9873cfffecb0516
+2024-09-03 22:59:49 [main] INFO  tc.testcontainers/ryuk:0.8.1 - Container testcontainers/ryuk:0.8.1 started in PT0.298082S
+2024-09-03 22:59:49 [main] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2024-09-03 22:59:49 [main] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2024-09-03 22:59:49 [main] INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2024-09-03 22:59:49 [main] INFO  tc.postgres:16.2-alpine3.18 - Creating container for image: postgres:16.2-alpine3.18
+2024-09-03 22:59:49 [main] INFO  tc.postgres:16.2-alpine3.18 - Container postgres:16.2-alpine3.18 is starting: 040d91addfe11d303c48d431464c0731329440e9b7c8653258eea3941e621b01
+2024-09-03 22:59:50 [main] INFO  tc.postgres:16.2-alpine3.18 - Container postgres:16.2-alpine3.18 started in PT0.83841S
+2024-09-03 22:59:50 [main] INFO  tc.postgres:16.2-alpine3.18 - Container is started (JDBC URL: jdbc:postgresql://localhost:53819/test?loggerLevel=OFF)
+2024-09-03 22:59:50 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
+2024-09-03 22:59:51 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-09-03 22:59:51 [main] INFO  o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@77e9dca8] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-09-03 22:59:51 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2024-09-03 22:59:51 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - table "package" does not exist, skipping
+2024-09-03 22:59:51 [main] INFO  o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@66715ca9] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-09-03 23:01:28 [main] INFO  o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@72bce309] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-09-03 23:01:28 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:tc:postgresql:16.2-alpine3.18:///test-db]

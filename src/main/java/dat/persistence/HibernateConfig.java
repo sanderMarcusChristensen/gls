@@ -83,10 +83,13 @@ public class HibernateConfig {
         configuration.setProperties(props);
         getAnnotationConfiguration(configuration);
 
+
+
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
         System.out.println("Hibernate Java Config serviceRegistry created");
 
         SessionFactory sf = configuration.buildSessionFactory(serviceRegistry);
+
         return sf.unwrap(EntityManagerFactory.class);
     }
 }
