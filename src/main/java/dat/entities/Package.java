@@ -4,6 +4,7 @@ import dat.enums.DeliveryStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,12 +35,23 @@ public class Package {
     @Column(name = "delivery_status", nullable = false)
     private DeliveryStatus deliveryStatus;
 
+    @OneToMany(mappedBy = "pkg")
+    private List<Shipment> shipment;
+
     @Column(name = "created_date_time", nullable = false, updatable = false)
     private LocalDateTime createdDateTime;
 
     @ToString.Exclude
     @Column(name = "updated_date_time", nullable = false)
     private LocalDateTime updatedDateTime;
+
+
+    public Package(String trackingNumber, String sender, String receiver, DeliveryStatus deliveryStatus) {
+        this.trackingNumber = trackingNumber;
+        this.sender = sender;
+        this.receiver = receiver;
+        this.deliveryStatus = deliveryStatus;
+    }
 
     @PrePersist
     public void prePersist() {
