@@ -1,6 +1,5 @@
-package dat.persistence;
+package dat.DAO;
 
-import java.util.List;
 import java.util.Set;
 
 public interface GenericDAO <T>{

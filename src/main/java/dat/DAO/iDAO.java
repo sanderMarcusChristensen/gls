@@ -1,4 +1,4 @@
-package dat.persistence;
+package dat.DAO;
 
 public interface iDAO<T> {
     T create(T t);

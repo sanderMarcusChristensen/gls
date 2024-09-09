@@ -3,13 +3,14 @@ package dat.entities;
 import dat.enums.DeliveryStatus;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Builder
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
@@ -35,8 +36,10 @@ public class Package {
     @Column(name = "delivery_status", nullable = false)
     private DeliveryStatus deliveryStatus;
 
+    @Getter
+    @Setter
     @OneToMany(mappedBy = "pkg")
-    private List<Shipment> shipment;
+    private Set<Shipment> shipment = new HashSet<>();   // HAshSET
 
     @Column(name = "created_date_time", nullable = false, updatable = false)
     private LocalDateTime createdDateTime;
@@ -45,12 +48,21 @@ public class Package {
     @Column(name = "updated_date_time", nullable = false)
     private LocalDateTime updatedDateTime;
 
-
-    public Package(String trackingNumber, String sender, String receiver, DeliveryStatus deliveryStatus) {
-        this.trackingNumber = trackingNumber;
-        this.sender = sender;
-        this.receiver = receiver;
+    @Builder
+    public Package(LocalDateTime updatedDateTime, LocalDateTime createdDateTime, DeliveryStatus deliveryStatus, String receiver, String sender, String trackingNumber, Long id) {
+        this.updatedDateTime = updatedDateTime;
+        this.createdDateTime = createdDateTime;
         this.deliveryStatus = deliveryStatus;
+        this.receiver = receiver;
+        this.sender = sender;
+        this.trackingNumber = trackingNumber;
+        this.id = id;
+    }
+
+
+    public void addShipmentToPackage(Shipment shipment) {
+        this.shipment.add(shipment);
+        shipment.setPkg(this);
     }
 
     @PrePersist

@@ -1,7 +1,6 @@
-package dat.persistence;
+package dat.DAO;
 
 import dat.entities.Location;
-
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -41,9 +40,8 @@ public class LocationDAO implements GenericDAO<Location> {
             TypedQuery<Location> query = em.createQuery("SELECT l FROM Location l WHERE l.latitude = :latitude AND l.longitude = :longitude", Location.class);
             query.setParameter("latitude", location.getLatitude());
             query.setParameter("longitude", location.getLongitude());
-
             try {
-                // If a matching location is found, use the existing one
+                // If a matching location is found
                 Location foundLocation = query.getSingleResult();
                 em.getTransaction().commit();
                 return foundLocation;

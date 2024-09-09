@@ -1,10 +1,9 @@
-package dat;
+package dat.DAO;
 
 import dat.entities.Package;
 import dat.enums.DeliveryStatus;
 import dat.enums.HibernateConfigState;
 
-import dat.persistence.PackageDAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.*;

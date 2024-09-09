@@ -1,8 +1,9 @@
-package dat.persistence;
+package dat.DAO;
 
 
 import dat.entities.Package;
 import dat.enums.HibernateConfigState;
+import dat.persistence.HibernateConfig;
 import jakarta.persistence.*;
 
 public class PackageDAO implements iDAO<Package> {

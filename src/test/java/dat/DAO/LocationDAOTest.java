@@ -1,6 +1,7 @@
-package dat.persistence;
+package dat.DAO;
 
 import dat.entities.Location;
+import dat.persistence.HibernateConfigThomas;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.*;

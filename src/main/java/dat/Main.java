@@ -4,14 +4,14 @@ import dat.entities.Package;
 import dat.enums.DeliveryStatus;
 import dat.enums.HibernateConfigState;
 
-import dat.persistence.PackageDAO;
+import dat.DAO.PackageDAO;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello GLS");
         PackageDAO packageDAO = PackageDAO.getInstance(HibernateConfigState.NORMAL);
 
-        Package aPackage = Package.builder().trackingNumber("123456789").sender("John Doe").receiver("Jane Doe").deliveryStatus(DeliveryStatus.PENDING).createdDateTime(null).build();
+        Package aPackage = Package.builder().trackingNumber("123456789").sender("John Doe").receiver("Jane Doe").deliveryStatus(DeliveryStatus.PENDING).build();
         System.out.println("Før: \n" + aPackage);
         aPackage = packageDAO.create(aPackage);
         System.out.println("Efter: \n" + aPackage);
