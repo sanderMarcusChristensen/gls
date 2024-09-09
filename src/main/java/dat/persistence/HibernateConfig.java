@@ -1,6 +1,8 @@
 package dat.persistence;
 
+import dat.entities.Location;
 import dat.entities.Package;
+import dat.entities.Shipment;
 import dat.enums.HibernateConfigState;
 import jakarta.persistence.EntityManagerFactory;
 import lombok.NoArgsConstructor;
@@ -32,6 +34,8 @@ public class HibernateConfig {
     private static void getAnnotationConfiguration(Configuration configuration) {
         // add annotated classes --- remember to add new entities here
         configuration.addAnnotatedClass(Package.class);
+        configuration.addAnnotatedClass(Location.class);
+        configuration.addAnnotatedClass(Shipment.class);
     }
 
     private static EntityManagerFactory buildEntityFactoryConfig() {

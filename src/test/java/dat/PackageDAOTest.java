@@ -3,7 +3,7 @@ package dat;
 import dat.entities.Package;
 import dat.enums.DeliveryStatus;
 import dat.enums.HibernateConfigState;
-import dat.exceptions.JpaException;
+
 import dat.persistence.PackageDAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -23,7 +23,7 @@ class PackageDAOTest {
 
     @BeforeEach
     void setUp() {
-        EntityManagerFactory emf = packageDAO.getEmf();
+        EntityManagerFactory emf = PackageDAO.getEmf();
 
         // Reset table and sequence before each test
         try (EntityManager em = emf.createEntityManager()) {
@@ -31,8 +31,6 @@ class PackageDAOTest {
             em.createQuery("DELETE FROM Package").executeUpdate();
             em.createNativeQuery("ALTER SEQUENCE package_id_seq RESTART WITH 1").executeUpdate();
             em.getTransaction().commit();
-        } catch (Exception e) {
-            throw new JpaException("Error deleting packages: " + e.getMessage());
         }
 
         // Create test data
@@ -61,7 +59,7 @@ class PackageDAOTest {
 
     @AfterAll
     static void tearDown() {
-        packageDAO.close();
+        PackageDAO.close();
     }
 
     @Test

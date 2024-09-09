@@ -3,7 +3,7 @@ package dat;
 import dat.entities.Package;
 import dat.enums.DeliveryStatus;
 import dat.enums.HibernateConfigState;
-import dat.exceptions.JpaException;
+
 import dat.persistence.PackageDAO;
 
 public class Main {
@@ -30,19 +30,19 @@ public class Main {
 
         try {
             Package updatedPackage = Package.builder()
-                .id(foundPackageByTrackingNumber.getId())
-                .trackingNumber(foundPackageByTrackingNumber.getTrackingNumber())
-                .sender("Benny Balle")
-                .receiver(foundPackageByTrackingNumber.getReceiver())
-                .createdDateTime(foundPackageByTrackingNumber.getCreatedDateTime())
-                .deliveryStatus(DeliveryStatus.DELIVERED).build();
+                    .id(foundPackageByTrackingNumber.getId())
+                    .trackingNumber(foundPackageByTrackingNumber.getTrackingNumber())
+                    .sender("Benny Balle")
+                    .receiver(foundPackageByTrackingNumber.getReceiver())
+                    .createdDateTime(foundPackageByTrackingNumber.getCreatedDateTime())
+                    .deliveryStatus(DeliveryStatus.DELIVERED).build();
 
             foundPackageByTrackingNumber = packageDAO.update(updatedPackage);
             System.out.println("Updated: \n" + foundPackageByTrackingNumber);
+        } finally {
+
         }
-        catch (JpaException e) {
-            System.out.println("Den gik sgu ikke granberg\n" + e.getMessage());
-        }
+
     }
 
 }

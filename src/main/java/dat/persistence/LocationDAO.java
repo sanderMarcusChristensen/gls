@@ -1,7 +1,7 @@
 package dat.persistence;
 
 import dat.entities.Location;
-import dat.exceptions.JpaException;
+
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -12,12 +12,17 @@ public class LocationDAO implements GenericDAO<Location> {
     private static LocationDAO instance;
     private static EntityManagerFactory emf;
 
+    public LocationDAO(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
+
     @Override
     public Location findById(Long id) {
         try (EntityManager em = emf.createEntityManager()) {
             return em.find(Location.class, id);
         }
     }
+
 
     @Override
     public Set<Location> getAll() {
@@ -47,9 +52,6 @@ public class LocationDAO implements GenericDAO<Location> {
                 em.persist(location);
                 em.getTransaction().commit();
                 return location;
-            } catch (Exception ex) {
-                em.getTransaction().rollback();
-                throw new JpaException("Error creating location: " + ex.getMessage());
             }
         }
     }
@@ -75,9 +77,6 @@ public class LocationDAO implements GenericDAO<Location> {
 
             em.getTransaction().commit();
             return locationFound;
-        } catch (Exception e) {
-            throw new JpaException("Update on location is no good");
-
         }
     }
 

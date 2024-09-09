@@ -1,6 +1,6 @@
 package dat.persistence;
 
-import dat.exceptions.JpaException;
+
 import dat.entities.Package;
 import dat.enums.HibernateConfigState;
 import jakarta.persistence.*;
@@ -37,8 +37,6 @@ public class PackageDAO implements iDAO<Package> {
             em.getTransaction().begin();
             em.persist(aPackage);
             em.getTransaction().commit();
-        } catch (Exception e) {
-            throw new JpaException("Error creating package: " + e.getMessage());
         }
         return aPackage;
     }
@@ -47,8 +45,6 @@ public class PackageDAO implements iDAO<Package> {
     public Package findById(Long id) {
         try (EntityManager em = emf.createEntityManager()) {
             return  em.find(Package.class, id);
-        } catch (Exception e) {
-            throw new JpaException("Error finding package: " + e.getMessage());
         }
     }
 
@@ -60,8 +56,6 @@ public class PackageDAO implements iDAO<Package> {
             query.setParameter("trackingNumber", trackingNumber);
             query.setMaxResults(1);
             return query.getSingleResult();
-        } catch (Exception e) {
-            throw new JpaException("Error finding package by tracking number: " + e.getMessage());
         }
     }
 
@@ -72,8 +66,6 @@ public class PackageDAO implements iDAO<Package> {
             em.getTransaction().begin();
             updatedPackage = em.merge(aPackage);
             em.getTransaction().commit();
-        } catch (Exception e) {
-            throw new JpaException("Error updating package: " + e.getMessage());
         }
         return updatedPackage;
     }

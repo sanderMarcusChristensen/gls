@@ -1,4 +1,5 @@
 package dat.exceptions;
+/*
 
 import ch.qos.logback.classic.Logger;
 import lombok.Getter;
@@ -19,3 +20,5 @@ public class JpaException extends RuntimeException {
                 logger.error(message);
          }
     }
+
+ */

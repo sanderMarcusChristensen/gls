@@ -36,12 +36,4 @@ public class Shipment {
     private LocalDateTime date_time;
 
 
-
-
-
-
-
-
-
-
 }
